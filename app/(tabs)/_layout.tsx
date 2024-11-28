@@ -5,11 +5,7 @@ import { Pressable } from 'react-native';
 
 export default function TabLayout() {
 	return (
-		<Tabs
-			screenOptions={{
-				tabBarActiveTintColor: 'black',
-			}}
-		>
+		<Tabs screenOptions={{ tabBarActiveTintColor: 'black' }}>
 			<Tabs.Screen
 				name='index'
 				options={{
