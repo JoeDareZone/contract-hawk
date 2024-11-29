@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Pressable, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Pressable, Text, View } from 'react-native'
 import DocumentPicker, {
 	DocumentPickerResponse,
 } from 'react-native-document-picker'
@@ -14,12 +14,19 @@ export default function UploadFile() {
 		setFile(pickedFile)
 	}
 
+	useEffect(() => {
+		console.log('file was picked succesfully', file)
+	}, [file])
+
 	return (
-		<Pressable
-			className='border-2 py-2 px-4 rounded-lg bg-slate-600 active:bg-blue-600'
-			onPress={pickDocument}
-		>
-			<Text className='text-lg text-white'>Upload</Text>
-		</Pressable>
+		<View>
+			<Pressable
+				className='border-2 py-2 px-4 mb-6 rounded-lg bg-slate-600 active:bg-blue-600'
+				onPress={pickDocument}
+			>
+				<Text className='text-lg text-white'>Upload</Text>
+			</Pressable>
+			<Text className='text-md text-black'>{file?.name}</Text>
+		</View>
 	)
 }
