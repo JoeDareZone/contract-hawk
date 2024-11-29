@@ -1,30 +1,14 @@
-import { StyleSheet, Text, View,  } from 'react-native';
+import { Text, View } from 'react-native'
 
-import EditScreenInfo from '@/components/EditScreenInfo';
+import EditScreenInfo from '@/components/EditScreenInfo'
+import UploadFile from '@/components/UploadFile'
 
 export default function TabOneScreen() {
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Home</Text>
-			<View style={styles.separator} />
-			<EditScreenInfo path='app/(tabs)/index.tsx' />
+		<View className='flex-1 items-center justify-center'>
+			<Text className='text-xl font-semibold'>Home</Text>
+			<View className='my-8 h-1 w-[80%]' />
+			<UploadFile />
 		</View>
-	);
+	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	title: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
-	separator: {
-		marginVertical: 30,
-		height: 1,
-		width: '80%',
-	},
-});
