@@ -1,6 +1,5 @@
 import { Text, View } from 'react-native'
 
-import EditScreenInfo from '@/components/EditScreenInfo'
 import UploadFile from '@/components/UploadFile'
 
 export default function TabOneScreen() {
