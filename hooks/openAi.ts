@@ -1,18 +1,22 @@
 import OpenAI from 'openai'
 import { useState } from 'react'
+import Config from 'react-native-config'
 
 const useOpenAI = () => {
 	const [message, setMessage] = useState('')
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 
+	const client = new OpenAI({
+		apiKey: Config.OPENAI_API_KEY,
+	})
+
 	const fetchAIResponse = async (userMessage: string) => {
-		const openai = new OpenAI()
 		setLoading(true)
 		setError(null)
 
 		try {
-			const completion = await openai.chat.completions.create({
+			const completion = await client.chat.completions.create({
 				model: 'gpt-4o',
 				messages: [{ role: 'user', content: userMessage }],
 			})
@@ -24,7 +28,7 @@ const useOpenAI = () => {
 		}
 	}
 
-	return { message, fetchAIResponse, loading, error }
+	return { client, message, fetchAIResponse, loading, error }
 }
 
 export default useOpenAI
