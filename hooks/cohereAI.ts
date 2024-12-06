@@ -10,18 +10,16 @@ const useCohereAI = () => {
 		setLoading(true)
 
 		try {
-			const client = new CohereClient({
+			const cohere = new CohereClient({
 				token: Config.COHERE_API_KEY,
 			})
 
-			const res = await client.chat({
+			const chat = await cohere.chat({
 				message: userMessage,
 				model: 'command-r-08-2024',
-				preamble:
-					'You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries.',
 			})
 
-			return res
+			setMessage(chat.text)
 		} catch (err) {
 			console.log(err)
 		} finally {

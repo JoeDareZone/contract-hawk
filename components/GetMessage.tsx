@@ -6,7 +6,7 @@ export default function GetMessage() {
 	const { fetchAIResponse } = useCohereAI()
 
 	const getMessage = () => {
-		fetchAIResponse('hi').then(res => console.log(res))
+		fetchAIResponse('hi')
 	}
 
 	return (
