@@ -1,9 +1,9 @@
-import useOpenAI from '@/hooks/openAi'
+import useCohereAI from '@/hooks/cohereAI'
 import React from 'react'
 import { Pressable, Text } from 'react-native'
 
 export default function GetMessage() {
-	const { fetchAIResponse } = useOpenAI()
+	const { fetchAIResponse } = useCohereAI()
 
 	const getMessage = () => {
 		fetchAIResponse('hi').then(res => console.log(res))
