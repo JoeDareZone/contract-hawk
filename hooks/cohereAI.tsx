@@ -1,5 +1,6 @@
 import { CohereClient } from 'cohere-ai'
 import React, { createContext, ReactNode, useContext, useState } from 'react'
+import Config from 'react-native-config'
 
 interface CohereAIContextType {
 	message: string
@@ -22,12 +23,10 @@ export const CohereAIProvider: React.FC<CohereAIProviderProps> = ({
 	const [loading, setLoading] = useState(false)
 
 	const fetchAIResponse = async (userMessage: string) => {
-		console.log('process env is', process.env)
-
 		setLoading(true)
 		try {
 			const cohere = new CohereClient({
-				token: process.env.COHERE_API_KEY,
+				token: Config.COHERE_API_KEY,
 			})
 
 			const chat = await cohere.chat({
