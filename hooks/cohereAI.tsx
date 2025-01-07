@@ -5,7 +5,7 @@ import Config from 'react-native-config'
 interface CohereAIContextType {
 	message: string
 	fetchAIResponse: (userMessage: string) => Promise<void>
-	loading: boolean
+	isLoading: boolean
 }
 
 interface CohereAIProviderProps {
@@ -20,10 +20,10 @@ export const CohereAIProvider: React.FC<CohereAIProviderProps> = ({
 	children,
 }) => {
 	const [message, setMessage] = useState('')
-	const [loading, setLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const fetchAIResponse = async (userMessage: string) => {
-		setLoading(true)
+		setIsLoading(true)
 		try {
 			const cohere = new CohereClient({
 				token: Config.COHERE_API_KEY,
@@ -38,12 +38,12 @@ export const CohereAIProvider: React.FC<CohereAIProviderProps> = ({
 		} catch (err) {
 			console.error(err)
 		} finally {
-			setLoading(false)
+			setIsLoading(false)
 		}
 	}
 
 	return (
-		<CohereAIContext.Provider value={{ message, fetchAIResponse, loading }}>
+		<CohereAIContext.Provider value={{ message, fetchAIResponse, isLoading }}>
 			{children}
 		</CohereAIContext.Provider>
 	)
