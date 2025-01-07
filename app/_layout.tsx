@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 
+import { CohereAIProvider } from '@/hooks/cohereAI'
 import { Stack } from 'expo-router'
 import '../global.css'
 
@@ -32,14 +33,20 @@ export default function RootLayout() {
 
 	!loaded && null
 
+
 	return <RootLayoutNav />
 }
 
 function RootLayoutNav() {
 	return (
-		<Stack>
-			<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-			<Stack.Screen name='modal' options={{ presentation: 'modal' }} />
-		</Stack>
+		<CohereAIProvider>
+			<Stack>
+				<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+				<Stack.Screen
+					name='modal'
+					options={{ presentation: 'modal' }}
+				/>
+			</Stack>
+		</CohereAIProvider>
 	)
 }
